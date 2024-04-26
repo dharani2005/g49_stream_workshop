@@ -7,11 +7,13 @@ import se.lexicon.vxo.model.PersonDto;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.Year;
 import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -204,6 +206,8 @@ public class StreamExercise {
                 .map(Person::getFirstName).distinct().sorted().toArray(String[]::new);
 
 
+
+
         //TODO:Write code here
 
         assertNotNull(result);
@@ -231,7 +235,9 @@ public class StreamExercise {
     @Test
     public void task14() {
         LocalDate[] _2020_dates = null;
-
+        _2020_dates =Stream.iterate(LocalDate.parse("2020-01-01"), (localDate -> localDate.plusDays(1)))
+                .limit(Year.of(2020).isLeap() ? 366 : 365)
+                .toArray(LocalDate[]::new);
         //TODO:Write code here
 
 
